@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 const About = () => {
   return (
     <div className="flex flex-col gap-5 max-w-[600px]">
-      <h1 className="text-2xl text-[#77438d] font-bold">Github Finder</h1>
+      <h1 className="text-3xl text-[#77438d] font-bold">
+        GitHub Finder{" "}
+        <span className="text-sm text-black font-thin">(v.1.0.1)</span>
+      </h1>
       <p>
         This application will provide users with an intuitive and user-friendly
         interface to search for GitHub users by their usernames, explore their
