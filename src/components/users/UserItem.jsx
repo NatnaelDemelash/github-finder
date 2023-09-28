@@ -9,14 +9,17 @@ const UserItem = ({ user }) => {
           <div className="rounded">
             <img
               src={user.avatar_url}
-              width={60}
+              width={70}
               alt="Profile"
               className="rounded-full"
             />
           </div>
           <div className="flex flex-col gap-1">
             <h3 className="text-lg font-bold">{user.login}</h3>
-            <Link to={`https:api.github.com/users/${user.login}`}>
+            <Link
+              to={`https:api.github.com/users/${user.login}`}
+              className="text-sm text-[#EB984E]"
+            >
               Visit Profile
             </Link>
           </div>
