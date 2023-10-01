@@ -3,7 +3,7 @@ import GithubContext from "../../context/github/GithubContext";
 
 const UserSearch = () => {
   const [text, setText] = useState("");
-  const { searchUsers } = useContext(GithubContext);
+  const { users, searchUsers, clearUsers } = useContext(GithubContext);
 
   const handleChange = (e) => setText(e.target.value);
 
@@ -33,7 +33,17 @@ const UserSearch = () => {
           className="bg-[#333] text-white p-[1.12rem] px-10 rounded-md rounded-l-none"
         >
           Find
-        </button>
+        </button>{" "}
+        <br />
+        {users.length > 0 && (
+          <button
+            type="button"
+            className="mt-2 bg-[#884EA0] text-white py-3 px-10 rounded-full "
+            onClick={clearUsers}
+          >
+            Clear
+          </button>
+        )}
       </div>
     </form>
   );
