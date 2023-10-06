@@ -41,7 +41,7 @@ const UserSearch = () => {
           {users.length > 0 && (
             <button
               type="button"
-              className="mt-2 bg-[#884EA0] text-white py-3 px-10 rounded-full "
+              className="mt-2 btn btn-error text-white py-3 px-10 rounded-xl "
               onClick={clearUsers}
             >
               Clear

@@ -5,8 +5,13 @@
 @tailwind utilities;
 
 body {
-  background-color: #ecf0f1;
+  /* background-color: #ecf0f1; */
   font-family: "Inclusive Sans", sans-serif;
+}
+
+.custom-card-image .card.image-full:before {
+  border-radius: 0.5rem;
+  opacity: 0.35;
 }
 
 .container {

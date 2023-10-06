@@ -1,17 +1,24 @@
 /* eslint-disable react/prop-types */
 import { createContext, useReducer } from "react";
 import githubReducer from "./githubReducer";
+// import.meta.env.VITE_GITHUB_URL;
+// import.meta.env.VITE_GITHUB_TOKEN;
+
+// const GITHUB_TOKEN = process.env.VITE_GITHUB_TOKEN;
+// const GITHUB_URL = process.env.VITE_GITHUB_URL;
 
 const GithubContext = createContext();
 
 export const GithubProvider = ({ children }) => {
   const initialState = {
     users: [],
+    user: {},
     isLoading: false,
   };
 
   const [state, dispatch] = useReducer(githubReducer, initialState);
 
+  // Search Users
   const searchUsers = async (text) => {
     setLoading();
     const params = new URLSearchParams({
@@ -29,6 +36,24 @@ export const GithubProvider = ({ children }) => {
     });
   };
 
+  // Get Single User
+  const getUser = async (login) => {
+    setLoading();
+
+    const response = await fetch(`https://api.github.com/users/${login}`);
+
+    const data = await response.json();
+
+    if (response.status === 404) {
+      window.location = "/not-Found";
+    } else {
+      dispatch({
+        type: "GET_USER",
+        payload: data,
+      });
+    }
+  };
+
   // Clear users from the UI
 
   const clearUsers = () => dispatch({ type: "CLEAR_USERS" });
@@ -39,9 +64,11 @@ export const GithubProvider = ({ children }) => {
     <GithubContext.Provider
       value={{
         users: state.users,
+        user: state.user,
         isLoading: state.isLoading,
         searchUsers,
         clearUsers,
+        getUser,
       }}
     >
       {children}

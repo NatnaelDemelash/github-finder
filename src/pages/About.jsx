@@ -23,7 +23,7 @@ const About = () => {
 
       <Link
         to="/"
-        className="text-[#77438d] font-bold border-b-2 border-[#77438d] w-[8rem]"
+        className=" btn btn-ghost text-[#77438d] font-bold border-[#77438d] w-[10rem]"
       >
         ⬅️Back to Home
       </Link>
