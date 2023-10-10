@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import GithubContext from "../context/github/GithubContext";
+import RepoLists from "../components/repos/RepoLists";
 
 const User = () => {
-  const { user, getUser, isLoading } = useContext(GithubContext);
+  const { user, getUser, isLoading, getUserRepo, repos } =
+    useContext(GithubContext);
 
   const params = useParams();
 
@@ -28,6 +30,7 @@ const User = () => {
 
   useEffect(() => {
     getUser(params.login);
+    getUserRepo(params.login);
   }, []);
 
   if (isLoading) {
@@ -145,6 +148,7 @@ const User = () => {
             </div>
           </div>
         </div>
+        <RepoLists repos={repos} />
       </div>
     </>
   );

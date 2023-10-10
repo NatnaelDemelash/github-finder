@@ -13,6 +13,7 @@ export const GithubProvider = ({ children }) => {
   const initialState = {
     users: [],
     user: {},
+    repos: [],
     isLoading: false,
   };
 
@@ -54,6 +55,20 @@ export const GithubProvider = ({ children }) => {
     }
   };
 
+  // Get user repos
+  const getUserRepo = async (login) => {
+    setLoading();
+
+    const response = await fetch(`https://api.github.com/users/${login}/repos`);
+
+    const { data } = await response.json();
+
+    dispatch({
+      type: "GET_REPO",
+      payload: data,
+    });
+  };
+
   // Clear users from the UI
 
   const clearUsers = () => dispatch({ type: "CLEAR_USERS" });
@@ -65,10 +80,12 @@ export const GithubProvider = ({ children }) => {
       value={{
         users: state.users,
         user: state.user,
+        repos: state.repos,
         isLoading: state.isLoading,
         searchUsers,
         clearUsers,
         getUser,
+        getUserRepo,
       }}
     >
       {children}
